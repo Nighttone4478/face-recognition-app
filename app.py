@@ -5,8 +5,10 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-MODEL_PATH = os.path.join(os.getcwd(), 'trained_model.yml')
-CASCADE_PATH = os.path.join(os.getcwd(), 'haarcascade_frontalface_default.xml')
+# 確保模型和分類器的路徑基於腳本當前目錄
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # 獲取當前腳本所在目錄
+MODEL_PATH = os.path.join(BASE_DIR, 'trained_model.yml')
+CASCADE_PATH = os.path.join(BASE_DIR, 'haarcascade_frontalface_default.xml')
 
 # 加載預訓練的 LBPH 模型
 recognizer = cv2.face.LBPHFaceRecognizer_create()
